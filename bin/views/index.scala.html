@@ -1,0 +1,17 @@
+@(listaDados: List[Leitura])
+
+
+
+<html>
+	<head>
+		<title>River Control</title>	
+		
+	</head>	
+	<body>
+
+		<p>teste</p>		
+		@for(dado <- listaDados){
+			<p>@dado.pressaoAt</p>
+		}
+	</body>
+</html>
