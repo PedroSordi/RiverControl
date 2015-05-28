@@ -42,17 +42,4 @@ public class LeituraController extends Controller {
 		// Implementar evento de tempo no arduino para envio
 		return ok("Ok");
 	}
-
-	public String previsaoTempo() {
-		String msg = "";
-
-		return msg;
-	}
-
-	public String previsaoAlagamento() {
-		String msg = "";
-
-		return msg;
-	}
-
 }
