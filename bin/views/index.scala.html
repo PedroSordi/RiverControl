@@ -1,17 +1,45 @@
-@(listaDados: List[Leitura])
-
-
-
-<html>
-	<head>
-		<title>River Control</title>	
-		
-	</head>	
-	<body>
-
-		<p>teste</p>		
-		@for(dado <- listaDados){
-			<p>@dado.pressaoAt</p>
-		}
-	</body>
-</html>
+@(cidade: String, data : String, leitura : Leitura, previsao : String, nivelRio : Double)
+@main("RiverControl") {
+<div class="main-wrapper">
+	<div class="main-wrapper-mask"></div>
+	<div class="main-wrapper-blur" style="background-image: url(@routes.Assets.at("img/paris-lg.jpg"))"></div>
+	<div class="main-wrapper-front">
+	   <div class="full-center">
+	      <div class="widget-block">
+	      	<!-- MAIN AREA -->
+	         <div class="img-area">
+	            <div class="img-area-mask"></div>
+	            <img src="@routes.Assets.at("img/paris-sm.jpg")" alt="">
+	            <div class="img-area-front">
+	               <h5 class="location">@cidade</h5>
+	               <p class="today">@data</p>
+	               <div class="weather-desc">
+	                  <span>@previsao</span>
+	               </div>
+	               <ul class="weather-block-info">
+	                  <li>
+	                     <p class="temperature">@leitura.temperatura</p>
+	                  </li>
+	                  <li>
+	                    </li>
+	                  <li>
+	                     <ul class="weather-params">
+	                        <li><i class="climacon thermometer medium-high"></i> <span>@leitura.pressaoAt Pascal</span></li>
+	                        <li><i class="climacon moon full"></i> <span>@leitura.umidade % umidade</span></li>	                        
+	                     </ul>
+	                  </li>
+	               </ul>
+	            </div>
+	         </div>
+	      </div>
+	      <div class="progress">
+  			<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: @nivelRio%;">
+    		@nivelRio %
+  			</div>
+		</div>
+	   </div>
+	</div>
+		   
+</div>
+	
+}

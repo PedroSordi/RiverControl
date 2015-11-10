@@ -9,7 +9,9 @@ import play.db.ebean.Model;
 @Entity
 public class Leitura extends Model {
 	private static final long serialVersionUID = 1l;
-
+	
+	public static Model.Finder<Long, Leitura> find = new Model.Finder<>(Long.class, Leitura.class);
+	
 	@Id
 	@GeneratedValue
 	public long id;
