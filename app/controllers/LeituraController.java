@@ -16,6 +16,9 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 
+import play.data.DynamicForm;
+import play.data.Form;
+
 public class LeituraController extends Controller {
 
 	// lerValores
@@ -42,24 +45,21 @@ public class LeituraController extends Controller {
 
 	// receberValores
 	// gravarValores
-	public static Result save(String temperatura, String pressao,
-			String umidade, String distancia) {
-		// final Map<String, String[]> values = request().body()
-		// .asFormUrlEncoded();
-		//
-		// String pressaoAt = values.get("pressaoAt")[0];
-		// String temperatura = values.get("temperatura")[0];
-		// String umidade = values.get("umidade")[0];
-		// String distancia = values.get("distancia")[0];
+	public static Result save() {
+		DynamicForm form = Form.form().bindFromRequest();
 
-		Leitura leitura = new Leitura();
-		leitura.pressaoAt = (Double.parseDouble(pressao));
-		leitura.temperatura = (Double.parseDouble(temperatura));
-		leitura.umidade = (Double.parseDouble(umidade));
-		leitura.distancia = (Double.parseDouble(distancia));
+		if (form.data().size() == 0) {
+		  return badRequest("Expceting some data");
+		} else {
+				Leitura leitura = new Leitura();
+				leitura.pressaoAt = (Double.parseDouble(form.get("pressure")));
+				leitura.temperatura = (Double.parseDouble(form.get("temperature")));
+				leitura.umidade = (Double.parseDouble(form.get("humidity")));
+				leitura.distancia = (Double.parseDouble(form.get("distance")));
 
-		leitura.save();
-		// Implementar evento de tempo no arduino para envio
-		return ok("Ok");
+				leitura.save();
+				// Implementar evento de tempo no arduino para envio
+				return ok("Ok");
+		}
 	}
 }
